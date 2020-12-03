@@ -27,7 +27,7 @@ def index():
   if request.method == 'POST':
       a = request.get_data()
       dict1 = json.loads(a)
-      print 'recv: %s' % a
+      #print 'recv: %s' % a
       return redirect(url_for('hello_world'))#json.dumps(dict1["data"])
   else:
       return '<h1>只接受post请求！</h1>'
