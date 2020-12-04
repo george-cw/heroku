@@ -32,7 +32,8 @@ def index():
   if request.method == 'POST':
       a = request.get_data()
       dict1 = json.loads(a)
-      log('recv: %s' % a)
+      #log('recv: %s' % a)
+      app.logger.info('recv: %s', a)
 
       return redirect(url_for('hello_world'))#json.dumps(dict1["data"])
   else:
