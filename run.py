@@ -37,6 +37,7 @@ def index():
       dict1 = json.loads(a)
       #log('recv: %s' % a)
       app.logger.error('recv: %s', a)
+      app.logger.error('dict1: %s', adict1["json"])
 
       return redirect(url_for('hello_world'))#json.dumps(dict1["data"])
   else:
