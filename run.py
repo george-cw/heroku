@@ -7,7 +7,7 @@ import sys
 app = Flask(__name__)
 
 def log(*args):
-  print args[0] % (len(args) > 1 and args[1:] or [])
+  print(args[0] % (len(args) > 1 and args[1:] or []))
   sys.stdout.flush()
 
 @app.route('/hello/')
