@@ -4,7 +4,10 @@ import json
 from flask import Flask, redirect, url_for, request
 from flask import jsonify
 import sys
+import logging
 app = Flask(__name__)
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 
 def log(*args):
   print(args[0] % (len(args) > 1 and args[1:] or []))
@@ -33,7 +36,7 @@ def index():
       a = request.get_data()
       dict1 = json.loads(a)
       #log('recv: %s' % a)
-      app.logger.info('recv: %s', a)
+      app.logger.error('recv: %s', a)
 
       return redirect(url_for('hello_world'))#json.dumps(dict1["data"])
   else:
