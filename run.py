@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import json
 from flask import Flask, redirect, url_for, request
-from flask import jsonify
+from flask import jsonify, abort
 import sys
 import logging
 app = Flask(__name__)
@@ -33,11 +33,12 @@ def login():
 @app.route('/' , methods=['GET', 'POST'])
 def index():
   if request.method == 'POST':
+      if not request.json:
+         abort(400)
       a = request.get_data()
       dict1 = json.loads(a)
       #log('recv: %s' % a)
       app.logger.error('recv: %s', a)
-      app.logger.error('dict1: %s', dict1["json"])
 
       return redirect(url_for('hello_world'))#json.dumps(dict1["data"])
   else:
